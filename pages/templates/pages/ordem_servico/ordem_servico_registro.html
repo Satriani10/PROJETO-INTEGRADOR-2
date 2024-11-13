@@ -1,0 +1,39 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Ordem de Serviço</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'pages/css/styles.css' %}">
+</head>
+<body class="bg-dark text-light">
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">Ordem de Serviço</a>
+    </nav>
+    <div class="container">
+        <h1 class="text-center">Criar Ordem de Serviço</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="error">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Criar Ordem de Serviço</button>
+                <a href="{% url 'historico_ordem_servico' %}" class="btn btn-primary">Ver Histórico de Ordem de Serviço</a>
+            </div>
+        </form>
+    </div>
+    <footer>
+        &copy; 2024 Drop Jet altomotiva. Todos os direitos reservados.
+    </footer>
+</body>
+</html>
